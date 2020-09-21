@@ -1,6 +1,7 @@
 package com.yujian.spring01;
 
 
+import com.yujian.spring01.Entity.Users;
 import com.yujian.spring01.Service.UserService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -55,7 +56,12 @@ public class UserServiceTest {
     System.out.println("-------第一次-------");
         System.out.println(this.userService.findUserAll().size());
 
-
+    Users users=new Users();
+    users.setName("ABSC12123");
+    users.setPassword("12343213343");
+    this.userService.saveUser(users);
+    System.out.println("-------第二次-------");
+    System.out.println(this.userService.findUserAll().size());
 }
 
 }

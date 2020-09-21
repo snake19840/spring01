@@ -5,6 +5,7 @@ import com.yujian.spring01.Entity.Users;
 import com.yujian.spring01.Service.UserService;
 import org.hibernate.annotations.Cache;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,10 +21,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UsersRepository usersRepository;
-    @Override
-    public List<Users> findUserAll() {
-        return this.usersRepository.findAll();
-    }
+
 
     @Override
     @Cacheable(value="users")
@@ -38,8 +36,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Cacheable(value="users")
+    public List<Users> findUserAll() {
+        return this.usersRepository.findAll();
+    }
+
+    @Override
+    //表示清除以users为策略的缓存对象
+    @CacheEvict(value = "users",allEntries = true)
     public void saveUser(Users users) {
         this.usersRepository.save(users);
-
     }
 }
