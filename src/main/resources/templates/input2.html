@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>添加用户</title>
+</head>
+<body>
+<form th:action="@{findById}" method="post">
+    用户ID:<input type="text" name="id"/>
+
+    <input type="submit" value="查询"/><b/>
+</form>
+
+
+
+
+<table>
+    <tr th:each="user : ${list}">
+        <td th:text="${user}" ></td>
+    </tr>
+</table>
+
+<span th:text="${success}"></span>
+
+</body>
+</html>

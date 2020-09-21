@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>添加用户</title>
+</head>
+<body>
+<form th:action="@{/jpa/addUser}" method="post">
+    用户ID:<input type="text" name="id"/>
+    用户姓名:<input type="text" name="name"/>
+    <span style="color: red" th:errors="${users.name}"></span><br/>
+    用户年龄:<input type="text" name="password"/>
+    <span style="color: red" th:errors="${users.password}"></span><br/>
+    <input type="submit" value="确定"/><b/>
+</form>
+
+<form th:action="@{/jpa/showAll}" method="post">
+    <input type="submit" value="显示全部">
+</form>
+
+
+<table>
+    <tr th:each="user : ${list}">
+        <td th:text="${user}" ></td>
+    </tr>
+</table>
+
+
+</body>
+</html>
